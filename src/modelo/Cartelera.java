@@ -13,7 +13,7 @@ public final class Cartelera extends JFrame{
     
   private final ArrayList<Pelicula> peliculas;
     
-  public Cartelera () {
+  public Cartelera() {
         
     peliculas = new ArrayList<>(); 
     Pelicula pelicula = new Pelicula();
@@ -27,10 +27,11 @@ public final class Cartelera extends JFrame{
   public ArrayList<Pelicula> getPelicula() {
     return peliculas;
   }
-   /**
+  /**
 	* este metodo puede cambiar pues se tiene los obejtos DAO 
     * para la consulta en la base de datos
     */  
+  
   public Pelicula buscaPelicula(String nombre) {
     
   

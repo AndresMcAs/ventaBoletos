@@ -16,7 +16,8 @@ public final class Pelicula {
   private String fechaEstreno;
   private String resumen;
   
-  public Pelicula (String nombre,String dire,String idioma,String genero,String fecha,int duracion){
+  public Pelicula(String nombre, String dire, String idioma, 
+      String genero, String fecha, int duracion) {
     this.ide = getIde();
     this.nombre = nombre;
     this.director = dire;

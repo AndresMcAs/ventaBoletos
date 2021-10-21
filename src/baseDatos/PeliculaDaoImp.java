@@ -31,7 +31,7 @@ public class PeliculaDaoImp implements PeliculaDao {
     conexionTransferida = true;
   }
   
-    /**
+  /**
      * metodo para visualizar la cartelera del cine  
      * en el cual se mostarran todas las peliculas disponibles 
      */

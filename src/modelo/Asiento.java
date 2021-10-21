@@ -6,16 +6,17 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.text.AttributeSet.ColorAttribute;
 
 /**
- * @author HP
- * clase asiento sirve para representar a los asientos de la sala
- *
- */
+  *   @author HP
+  *   clase asiento sirve para representar a los asientos de la sala
+  *
+  */
 
 public class Asiento extends JLabel{
 
-  private static final long serialVersionUID = 6259969565147949565L;
+  private static final long serialVersionUID = 5L;
 	
   private boolean reservado;
   public final int VALOR;
@@ -29,14 +30,18 @@ public class Asiento extends JLabel{
     setFont(new Font("Verdana", Font.BOLD, 20));
     setOpaque(true);
     setBackground(Color.WHITE);
-    setForeground(new Color(16, 175, 5));
+    setForeground(Color.DARK_GRAY);
     setBorder(BorderFactory.createCompoundBorder(
-                   BorderFactory.createMatteBorder(5, 5, 5, 5, new Color(16, 175, 5)),
+                   BorderFactory.createMatteBorder(5, 5, 5, 5, Color.DARK_GRAY),
                    BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         
     setToolTipText("Disponible,fila: " + VALOR);
   }
   
+  /*
+   *  reservar metodo que se encarga de mostara si un asiento esta ocupado o no 
+   *  
+   */
   public void reservar() {
         
     reservado = true;

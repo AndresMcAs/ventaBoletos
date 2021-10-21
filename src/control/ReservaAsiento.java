@@ -25,7 +25,7 @@ public class ReservaAsiento extends JFrame {
   private static final long serialVersionUID = 1L;
    
   
-  public static void main (String []args) {
+  public static void main(String []args) {
     SwingUtilities.invokeLater(new Runnable() {  
       @Override
   public void run() {
@@ -60,14 +60,18 @@ public class ReservaAsiento extends JFrame {
     cp.setLayout(new FlowLayout());
     cp.add(panelAsiento, BorderLayout.SOUTH);
     cp.add(panelReserva, BorderLayout.NORTH);
-      
-    panelReserva. btReservar.addActionListener(new ActionListener() {
+    //eventos de los botones 
+    panelReserva.btReservar.addActionListener(new AccionReservacion());
+    
+    /* una forma es cerrar la ventana otra seria mostara un ventana emergente 
+     * para confirmar la accion y  si es asi saldria o se quedaria a seguir editando 
+     */
+    panelReserva.btCancelar.addActionListener(new ActionListener() {
         @Override
-         public void actionPerformed(ActionEvent e) {
-          AccionReservacion res = new AccionReservacion();
-          res.actionPerformed(e);
-      }
-        });
+        public void actionPerformed(ActionEvent e) {
+          dispose(); 
+        }
+      });
     
   }
     

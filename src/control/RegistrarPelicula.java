@@ -2,7 +2,7 @@
 package control;
 
 import baseDatos.PeliculaDaoImp;
-//import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -40,27 +40,26 @@ public class RegistrarPelicula extends JFrame {
   JButton cancelar;
    
   public RegistrarPelicula() {
-    super("Registro de Peliculas");
-     
+    super("Registro de Peliculas"); 
     setSize(600, 500); // ancho/largo
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     // panel de fecha 
-     // elementos para la fecha de estreno
+    /* elementos para la fecha de estreno*/
     
-    /*JDateChooser dateChooser= new JDateChooser("yyyy/MM/dd","####/##/##",'_');
+    JDateChooser dateChooser = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
     dateChooser.getDate();
     dateChooser.getCalendar();
-    JPanel panelFecha= new JPanel();
+    JPanel panelFecha = new JPanel();
     panelFecha.setLayout(new FlowLayout());
     panelFecha.add(dateChooser);
-    */
+   
     //panel de datos 
-    // datos que seran agragados a la BD
+    // datos que seran agregados a la BD
      
     JPanel panelDatos = new JPanel();
     GridLayout gl = new GridLayout();
-    gl.setRows(8); // numero de renglones 
+    gl.setRows(9); // numero de renglones 
     gl.setHgap(0); //separacion entre columnas
     gl.setColumns(1); //numero de columnas
     gl.setVgap(10); //separacion
@@ -77,7 +76,7 @@ public class RegistrarPelicula extends JFrame {
     panelDatos.add(new JLabel("Genero:"));
     panelDatos.add(genero = new JTextField(15));
     panelDatos.add(new JLabel("Estreno:"));
-    //panelDatos.add(panelFecha);
+    panelDatos.add(panelFecha);
     panelDatos.add(new JLabel("Resumen:"));
     panelDatos.add(resumen = new JTextArea());
     
@@ -104,9 +103,9 @@ public class RegistrarPelicula extends JFrame {
         pelicula.setNombre(nombre.getText());
         pelicula.setDirector(director.getText());
         pelicula.setIdioma(idioma.getText());
-        // pelicula.setDuracion(duracion.getText());
+        pelicula.setDuracion(Integer.parseInt(duracion.getText()));
         pelicula.setGenero(genero.getText());
-        //  pelicula.setFechaEstreno(panelFecha.getName());
+        pelicula.setFechaEstreno(panelFecha.getName());
         pelicula.setResumen(resumen.getText());
         /* PeliculaDAOImp peliculaDAO = new PeliculaDAOImp();
         peliculaDAO.insertar(pelicula);*/
@@ -115,14 +114,19 @@ public class RegistrarPelicula extends JFrame {
     cancelar.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-             // evento del boton cancelar 
+          String confirmacion = String.format("¿Deseas Salir?");
+          int respuesta = JOptionPane.showConfirmDialog(null, confirmacion,
+                            "Registrar Pelicula", JOptionPane.YES_NO_OPTION);
+        if (respuesta == JOptionPane.YES_OPTION) { 
+          dispose(); 
+        }
       }
     }); 
     
     
   }
 
-  public static void main (String []args) {
+  public static void main(String []args) {
     SwingUtilities.invokeLater(() -> {
       RegistrarPelicula thisClass = new RegistrarPelicula();
       thisClass.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,7 +1,6 @@
 package modelo;
 
 import java.awt.Font;
-
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,12 +12,14 @@ import javax.swing.border.EmptyBorder;
 public class PanelReservar extends JPanel{
 
   private static final long serialVersionUID = 1L;
+  
   private final JTextField campoReservas;
   public JButton btReservar;
   public JButton btCancelar;
 	
   public PanelReservar() {
-    campoReservas = new JTextField(16); // verificar que este guardando el texto 
+
+    campoReservas = new JTextField(25); 
     campoReservas.setFont(new Font("Verdana", Font.PLAIN, 12));
     btReservar = new JButton("Reservar");
     btReservar.setFont(new Font("Verdana", Font.PLAIN, 12));
@@ -26,7 +27,7 @@ public class PanelReservar extends JPanel{
     btCancelar.setFont(new Font("Verdana", Font.PLAIN, 12));
     
     JPanel pnSuperior = new JPanel();
-    JLabel etiq = new JLabel("Indique códigos de asiento separados por comas (max 5 reservas)");
+    JLabel etiq = new JLabel("Indique codigos de asiento separados por comas ");
     etiq.setFont(new Font("Verdana", Font.BOLD, 12));
     pnSuperior.setLayout(new BoxLayout(pnSuperior, BoxLayout.Y_AXIS));
     JPanel pnEtiq = new JPanel();

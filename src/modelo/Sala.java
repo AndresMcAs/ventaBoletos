@@ -52,6 +52,7 @@ public class Sala {
   public void setColumna(int columna) {
     this.columna = columna;
   }
+  
   public String ToString() {
       
     String sala = "Nombre: " +  getNombre() 
