@@ -1,14 +1,15 @@
 
 package control;
 
-import baseDatos.PeliculaDaoImp;
 import com.toedter.calendar.JDateChooser;
+import basedatos.PeliculaDaoImp;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,7 +27,6 @@ import modelo.Pelicula;
 public class RegistrarPelicula extends JFrame {
 
   private static final long serialVersionUID = 1L;
-  private Pelicula pelicula;
     
   // Area de texto para la obtencion de los datos de la pelicula 
   JTextField nombre;
@@ -38,7 +38,11 @@ public class RegistrarPelicula extends JFrame {
   JTextField estreno;
   JButton aceptar;
   JButton cancelar;
-   
+  int dia = 0;
+  int mes = 0;
+  int año = 0 ;
+  String fecha;
+  
   public RegistrarPelicula() {
     super("Registro de Peliculas"); 
     setSize(600, 500); // ancho/largo
@@ -47,16 +51,17 @@ public class RegistrarPelicula extends JFrame {
     // panel de fecha 
     /* elementos para la fecha de estreno*/
     
-    JDateChooser dateChooser = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
-    dateChooser.getDate();
-    dateChooser.getCalendar();
+    JDateChooser FechaEstreno = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
+    
+    FechaEstreno.getCalendar();
+    FechaEstreno.getDate();
     JPanel panelFecha = new JPanel();
     panelFecha.setLayout(new FlowLayout());
-    panelFecha.add(dateChooser);
-   
-    //panel de datos 
-    // datos que seran agregados a la BD
-     
+    panelFecha.add(FechaEstreno);    
+    /*
+     * panel de datos 
+     * datos que seran agregados a la BD
+     */
     JPanel panelDatos = new JPanel();
     GridLayout gl = new GridLayout();
     gl.setRows(9); // numero de renglones 
@@ -80,7 +85,6 @@ public class RegistrarPelicula extends JFrame {
     panelDatos.add(new JLabel("Resumen:"));
     panelDatos.add(resumen = new JTextArea());
     
-    
     //panel de botones 
     JPanel panelBoton = new JPanel();
     aceptar = new JButton("Aceptar");
@@ -98,17 +102,23 @@ public class RegistrarPelicula extends JFrame {
     aceptar.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-             
+        
         Pelicula pelicula = new Pelicula();
         pelicula.setNombre(nombre.getText());
         pelicula.setDirector(director.getText());
         pelicula.setIdioma(idioma.getText());
         pelicula.setDuracion(Integer.parseInt(duracion.getText()));
         pelicula.setGenero(genero.getText());
-        pelicula.setFechaEstreno(panelFecha.getName());
+        
+        dia = FechaEstreno.getCalendar().get(Calendar.DAY_OF_MONTH);
+        mes = FechaEstreno.getCalendar().get(Calendar.MONTH) + 1;
+        año = FechaEstreno.getCalendar().get(Calendar.YEAR);
+        fecha = dia  + "/" + mes + "/" + año ;
+       
+        pelicula.setFechaEstreno(fecha);
         pelicula.setResumen(resumen.getText());
-        /* PeliculaDAOImp peliculaDAO = new PeliculaDAOImp();
-        peliculaDAO.insertar(pelicula);*/
+         PeliculaDaoImp peliculaDAO = new PeliculaDaoImp();
+        peliculaDAO.insertar(pelicula);
       }
     });
     cancelar.addActionListener(new ActionListener() {
@@ -135,18 +145,4 @@ public class RegistrarPelicula extends JFrame {
     
   }
   
-  public RegistrarPelicula(Pelicula pelicula) {
-    this.pelicula = pelicula; // uso del objeto peliculaDAOImp
-    
-  }    
-
-  public Pelicula getPelicula() {
-    return pelicula;
-  }
-
-  public void setPelicula(Pelicula pelicula) {
-    this.pelicula = pelicula;
-  }
-    
-    
 }

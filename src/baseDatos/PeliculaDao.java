@@ -1,5 +1,5 @@
 
-package baseDatos;
+package basedatos;
 
 import java.util.List;
 import modelo.Pelicula;
@@ -12,7 +12,7 @@ public interface PeliculaDao {
       
   public List<Pelicula> consultar();
   
-  public void insertar(Pelicula pelicula);
+  public boolean insertar(Pelicula pelicula);
   
   public int actualizar(Pelicula pelicula);
   

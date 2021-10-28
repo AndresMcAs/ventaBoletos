@@ -1,7 +1,7 @@
 
 package modelo;
 
-/**
+/**.
  *
  * @author Andres Mendoza
  */
@@ -15,6 +15,16 @@ public final class Pelicula {
   private String genero;
   private String fechaEstreno;
   private String resumen;
+  /**.
+   * clase pelicula hace referencia a todos los datos referentes 
+   * a un apelicula 
+   * @param nombre de la pelicula
+   * @param dire   nombre del director
+   * @param idioma idioma de la pelicula
+   * @param genero genero al que pertenece la pelicula
+   * @param fecha  fecha de estreno de la pelicula
+   * @param duracion , tiempo de duracion
+   */
   
   public Pelicula(String nombre, String dire, String idioma, 
       String genero, String fecha, int duracion) {
@@ -66,8 +76,8 @@ public final class Pelicula {
     return fechaEstreno;
   }
 
-  public void setFechaEstreno(String fechaEstreno) {
-    this.fechaEstreno = fechaEstreno;
+  public void setFechaEstreno(String date) {
+    this.fechaEstreno = date;
   }
 
   public int getIde() {
@@ -101,7 +111,7 @@ public final class Pelicula {
     pelicula = "Nombre: " + getNombre() + "\n";
     pelicula = pelicula + "Director: " + getDirector() + "\n";
     pelicula = pelicula + "Idioma: " + getIdioma() + "\n";
-    pelicula = pelicula + "Género: " + getGenero() + "\n";
+    pelicula = pelicula + "Genero: " + getGenero() + "\n";
     pelicula = pelicula + "Fecha Estreno: " + getFechaEstreno() + "\n";
         
     return pelicula;

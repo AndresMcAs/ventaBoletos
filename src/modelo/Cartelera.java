@@ -3,16 +3,26 @@ package modelo;
 
 import java.util.ArrayList;
 import javax.swing.JFrame;
-/**
- *
+
+/** 
+ * 
+ * clase cartelera que nos mostrar las peliculas que se proyectaran
+ * en el cine 
  * @author Andres Mendoza
+ *  @Version 1.0 , 2021/10/21
  */
 
-/* esta clase es la cartelera que sera visble para la busqueda de alguna pelicua*/
-public final class Cartelera extends JFrame{
+public final class Cartelera extends JFrame {
     
+
+  private static final long serialVersionUID = 1L;
+	
   private final ArrayList<Pelicula> peliculas;
-    
+  
+  /**
+   * metodo constructor de la cartelera   
+   */
+  
   public Cartelera() {
         
     peliculas = new ArrayList<>(); 

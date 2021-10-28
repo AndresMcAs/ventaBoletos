@@ -1,9 +1,6 @@
 
 package control;
 
-import baseDatos.PeliculaDaoImp;
-
-import baseDatos.PeliculaDaoImp;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -16,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+
+import basedatos.PeliculaDaoImp;
 import modelo.Pelicula;
 /**
  *

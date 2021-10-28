@@ -1,5 +1,5 @@
 
-package baseDatos;
+package basedatos;
 
 import static java.lang.System.out;
 
@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
+/**.
  *
  * @author andres mendoza
  */
@@ -21,7 +21,10 @@ public class AdminBd {
   private String host;
   private String puerto;
   private String baseDatos;
-
+  /**.
+   *  class para la conexion a la base da datos 
+   */
+  
   public AdminBd() {
     esquema = "jdbc:oracle:thin:@";
     host = "127.0.0.1";
@@ -30,16 +33,20 @@ public class AdminBd {
     url = esquema + host + ":" + puerto + ":" + baseDatos;
     usuario = "cine";
     contra = "cine";
-  }	
-
-  public Connection Conectar() {
+  }
+  /**.
+   * se encarga de ralizar la conexion a la base de datos
+   * @return  regresa la conexion
+   */
+  
+  public Connection conectar() {
        
     Connection con = null;
     try {
       con = DriverManager.getConnection(url, usuario, contra);
       out.println("conexion establecida");
     } catch (SQLException esql) {
-    	
+      out.println("conexion fallida");
     }
     return con;
   }

@@ -2,11 +2,9 @@ package modelo;
 
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.text.AttributeSet.ColorAttribute;
 
 /**
   *   @author HP
