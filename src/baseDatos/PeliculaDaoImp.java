@@ -5,10 +5,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Pelicula;
+
 
 /**.
  *
@@ -19,6 +21,15 @@ public class PeliculaDaoImp implements PeliculaDao {
   private AdminBd admin;
   private Connection conexion;
   private boolean conexionTransferida;
+  private Statement stm;
+  private Pelicula peliculaHallada;
+  private String nom;
+  private String director;
+  private int    duracion;
+  private String idioma;
+  private String genero;
+  private String resumen;
+  private String estreno;
     
   public PeliculaDaoImp() {
     admin = new AdminBd();
@@ -71,7 +82,37 @@ public class PeliculaDaoImp implements PeliculaDao {
     }
     return lista;
   }
+  
+  @Override
+  public Pelicula buscarPelicula(String nombre) {
 
+    ResultSet peliculaSet;
+    try {
+      conexion = admin.conectar();
+      stm  = conexion.createStatement();
+      peliculaSet = stm.executeQuery("select * from peliculas where nombre= '" + nombre.trim() + "'");
+      if (!peliculaSet.next()) {
+        JOptionPane.showMessageDialog(null, "Pelicula no encontrada");
+        conexion.close();
+        return null;
+      } else {
+
+        nom = peliculaSet.getString("nombre");
+        director = peliculaSet.getString("director");
+        duracion = peliculaSet.getInt("duracion");
+        idioma = peliculaSet.getString("idioma");
+        genero = peliculaSet.getString("genero");
+        estreno = peliculaSet.getString("estreno");
+        resumen = peliculaSet.getString("resumen");
+        peliculaHallada = new Pelicula(nom, director, duracion, idioma, estreno,genero, resumen);
+        return peliculaHallada;
+      }
+    } catch (SQLException e) {
+      JOptionPane.showMessageDialog(null, "Error al consultar la BD" + e.getMessage());
+      return null;
+    }
+  }
+  
   @Override
   public boolean insertar(Pelicula pelicula) {
 
@@ -147,7 +188,7 @@ public class PeliculaDaoImp implements PeliculaDao {
     PreparedStatement ps = null;
     
     sql = "delete from peliculas"
-           + "WHERE NOMBRE = ?";
+           + "WHERE NOMBRE = '" + pelicula.getNombre().trim() + "'";
     conexion = admin.conectar();
     try {
       ps = conexion.prepareStatement(sql);
@@ -161,6 +202,27 @@ public class PeliculaDaoImp implements PeliculaDao {
     }
     return result;
      
+  }
+
+  @Override
+  public int borrarPorNombre(int clave, String nombre) {
+    int result = 0;
+    
+   
+    try {
+      String sql = "delete from peliculas where id_peli=? and nombre= ?";
+      conexion = admin.conectar();
+      PreparedStatement stmt = conexion.prepareStatement(sql);
+      stmt.setInt(1, clave);
+      stmt.setString(2, nombre);
+      result = stmt.executeUpdate();
+      JOptionPane.showMessageDialog(null, "Se borrado la pelicula con exito ");
+    } catch (SQLException e) {
+      e.printStackTrace();
+      JOptionPane.showMessageDialog(null, "Error no se borro la pelicula:" + nombre 
+             + "\n" + e.getMessage());
+    }
+    return result;
   }
 
   

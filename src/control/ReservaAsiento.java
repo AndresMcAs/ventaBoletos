@@ -7,9 +7,12 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import modelo.AccionReservacion;
+import modelo.Asiento;
 import modelo.PanelAsientos;
 import modelo.PanelReservar;
 
@@ -60,11 +63,60 @@ public class ReservaAsiento extends JFrame {
     cp.add(panelAsiento, BorderLayout.SOUTH);
     cp.add(panelReserva, BorderLayout.NORTH);
     //eventos de los botones 
-    panelReserva.btReservar.addActionListener(new AccionReservacion());
+    panelReserva.btReservar.addActionListener(new ActionListener() {
+    	@Override
+    	  public void actionPerformed(ActionEvent e) {
+    	    String confirmacion;
+    	    int respuesta;
+    	    String peticionReservas = panelReserva.getReservas();
+    	    String[] reservas = peticionReservas.split(","); //comporvacion de los datos ingresados 
+    	    System.out.print("" + panelReserva.getReservas() ); 
+    	    /*
+    	     * Comprobamos si existen los asientos solicitados
+    	     * y si estan reservados o no. 
+    	     */
+    	    PanelAsientos asientos = new PanelAsientos();
+    	    Asiento asiento = null;
+    	    //En este arraylist anotamos los asientos solicitados que podran reservarse
+    	    ArrayList<Asiento> reservasValidas = new ArrayList<Asiento>();
+    	    for (int i = 0; i < reservas.length; i++) {
+    	       asiento = asientos.compruebaAsiento(reservas[i]);
+    	      if (asiento != null) {
+    	        reservasValidas.add(asiento);
+    	      }
+    	    }
+    	    if (reservasValidas.isEmpty()) {
+    	      JOptionPane.showMessageDialog(null, "No hay asientos reservables en su peticion.\n" 
+    	          + "Indique nombres de asientos que se muestren disponibles en blanco",
+    	                                    "Reservar asientos", JOptionPane.INFORMATION_MESSAGE);
+    	    } else {
+    	      //Calculamos importe total de la reserva y pedimos confirmacion
+    	      StringBuilder reservados = new StringBuilder();
+    	      int importe = 0;
+    	      for (Asiento asi : reservasValidas) {
+    	    	  if (asiento.estaReservado())
+    	        reservados.append("[" + asi.getText() + "] ");
+    	        importe += 50; // cambiar por el precio de los boletos 
+    	      }
+    	      confirmacion = String.format("Asientos a reservar: %s\nImporte total: %d\n"
+    	                                     + "¿Confirmar reserva?", reservados.toString(), importe);
+    	      respuesta = JOptionPane.showConfirmDialog(null, confirmacion,
+    	                                               "Reservar asientos", JOptionPane.YES_NO_OPTION);
+    	      if (respuesta == JOptionPane.YES_OPTION ) { 
+    	    	for (Asiento asi: reservasValidas) {
+   
+    	    		asi.reservar(); //Reservamos asientos
+    	    		asi.estaReservado();
+    	    		panelReserva.reset();
+    	    		
+    	            // actualizar el estado del tablero 
+    	        }
+    	      }
+    	    }
+    	  }
+    });
+   
     
-    /* una forma es cerrar la ventana otra seria mostara un ventana emergente 
-     * para confirmar la accion y  si es asi saldria o se quedaria a seguir editando 
-     */
     panelReserva.btCancelar.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {

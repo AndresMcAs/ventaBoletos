@@ -9,14 +9,21 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class PanelReservar extends JPanel{
+/**.
+ *      class panel para poder reservar un asiento en la sala 
+ *
+ */
+public class PanelReservar extends JPanel {
 
   private static final long serialVersionUID = 1L;
   
   private final JTextField campoReservas;
   public JButton btReservar;
   public JButton btCancelar;
-	
+  
+  /**.  
+   * Constructor del panel
+   */
   public PanelReservar() {
 
     campoReservas = new JTextField(25); 

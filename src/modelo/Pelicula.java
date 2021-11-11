@@ -39,6 +39,17 @@ public final class Pelicula {
     
   public Pelicula() {
   }
+  
+  public Pelicula(String nombre, String director, int duracion, String idioma, 
+                  String estreno, String genero, String resumen) {
+    this.nombre = nombre;
+    this.director = director;
+    this.duracion = duracion;
+    this.idioma = idioma;
+    this.genero = genero;
+    this.fechaEstreno = estreno; 
+    this.resumen = resumen;
+  }
 
   public String getNombre() {
     return nombre;

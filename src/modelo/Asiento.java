@@ -30,7 +30,7 @@ public class Asiento extends JLabel{
     setBackground(Color.WHITE);
     setForeground(Color.DARK_GRAY);
     setBorder(BorderFactory.createCompoundBorder(
-                   BorderFactory.createMatteBorder(5, 5, 5, 5, Color.DARK_GRAY),
+                   BorderFactory.createMatteBorder(5, 5, 5, 5, Color.GREEN),
                    BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         
     setToolTipText("Disponible,fila: " + VALOR);

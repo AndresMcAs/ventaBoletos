@@ -44,7 +44,7 @@ public class AdminBd {
     Connection con = null;
     try {
       con = DriverManager.getConnection(url, usuario, contra);
-      out.println("conexion establecida");
+      
     } catch (SQLException esql) {
       out.println("conexion fallida");
     }

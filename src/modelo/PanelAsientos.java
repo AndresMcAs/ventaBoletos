@@ -1,38 +1,47 @@
 package modelo;
 
 import java.awt.GridLayout;
+import java.util.Random;
+
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import basedatos.SalaDao;
 
 
 public class PanelAsientos extends JPanel{
 
   private static final long serialVersionUID = 1L;
-	
+  	
   private Asiento[][] asientos;
-	
+  SalaDao dao = new SalaDao();
+  Sala s = new Sala();
+	 
   public PanelAsientos() {
+	s = dao.buscarSala("Sala 1");
     int i;
     int j;
     iniciarAsientos();
     setLayout(new GridLayout(8, 9, 2, 2));
-      for (i = 0; i < 8; i++)
-      for (j = 0; j < 9; j++)
+      for (i = 0; i < s.getFila(); i++)
+      for (j = 0; j < s.getColumna(); j++)
         add(asientos[i][j]);
     setBorder(BorderFactory.createCompoundBorder(
         BorderFactory.createCompoundBorder(
         BorderFactory.createEmptyBorder(5, 5, 5, 5),
-        BorderFactory.createTitledBorder("Asientos de la Sala")),
+        BorderFactory.createTitledBorder("Asientos de la "+s.getNombre())),
             BorderFactory.createLoweredSoftBevelBorder()));
   }
 	
   private void iniciarAsientos() {
-    asientos = new Asiento[8][9];
-    int nAsiento = 8;
-    int valor = 8;
-        
-    for (int i = 0; i < 8; i++) {                   
+	//filas - columnas 
+    asientos = new Asiento[s.getFila()][s.getColumna()];
+    int nAsiento = s.getFila();
+    int valor = s.getFila();
+       
+    for (int i = 0; i < s.getFila(); i++) { 
+    	
       asientos[i][0] = new Asiento(nAsiento + "A", valor);
       asientos[i][1] = new Asiento(nAsiento + "B", valor);
       asientos[i][2] = new Asiento(nAsiento + "C", valor);
@@ -45,15 +54,30 @@ public class PanelAsientos extends JPanel{
       nAsiento--;
       valor--;
     }
+    reservar();
   }
+  
+  private void reservar() {
+		int reservas = 25;
+		Random azar = new Random();
+		while(reservas > 0) {
+			int fila = azar.nextInt(8);
+			int columna = azar.nextInt(9);
+			if (!asientos[fila][columna].estaReservado()) {
+				asientos[fila][columna].reservar();
+				reservas--;
+			}
+			
+		}
+	}
 	
   public Asiento compruebaAsiento(String asiento) {
 	
-    for (int i = 0; i < 8; i++) {
-      for (int j = 0; j < 9; j++)
+    for (int i = 0; i < s.getFila(); i++) {
+      for (int j = 0; j < s.getColumna(); j++)
         if (asientos[i][j].getText().equals(asiento)) {
           if (asientos[i][j].estaReservado()) {
-            JOptionPane.showMessageDialog(null, asiento + " ya está reservado",
+            JOptionPane.showMessageDialog(null, asiento + " ya esta reservado",
                         "Reservar asientos", JOptionPane.WARNING_MESSAGE);
             return null;
           } else
