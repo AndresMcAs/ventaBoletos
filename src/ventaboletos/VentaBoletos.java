@@ -1,10 +1,6 @@
 
 package ventaboletos;
 
-import java.util.ArrayList;
-import java.util.List;
-import basedatos.PeliculaDaoImp;
-import modelo.Pelicula;
 
 /**
  *
@@ -17,18 +13,8 @@ public class VentaBoletos {
      */
   public static void main(String[] args) {
         
-    List<Pelicula> lista = new ArrayList<>();
-  
-       
-    PeliculaDaoImp pelicula = new PeliculaDaoImp();
-    lista = pelicula.consultar();
-       
-    for (int i = 0; i < lista.size(); i++) {
-      System.out.println(lista.get(i).getNombre() +
-    		             lista.get(i).getDirector()  );
-    }
-     
-     
+      Cine cine = new Cine();
+      cine.setVisible(true);
 
   
     }

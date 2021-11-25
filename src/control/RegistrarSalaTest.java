@@ -7,7 +7,7 @@ import modelo.Sala;
 import org.junit.jupiter.api.Test;
 
 /**.
- * testeo de registro de sala
+ * prueba de registro de sala
  *
  */
 public class RegistrarSalaTest {

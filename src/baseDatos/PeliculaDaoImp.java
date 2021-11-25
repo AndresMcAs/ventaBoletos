@@ -1,6 +1,10 @@
 
 package basedatos;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Pelicula;
-
+import java.awt.Image;
 
 /**.
  *
@@ -30,6 +34,7 @@ public class PeliculaDaoImp implements PeliculaDao {
   private String genero;
   private String resumen;
   private String estreno;
+  private byte [] imagen;
     
   public PeliculaDaoImp() {
     admin = new AdminBd();
@@ -87,6 +92,7 @@ public class PeliculaDaoImp implements PeliculaDao {
   public Pelicula buscarPelicula(String nombre) {
 
     ResultSet peliculaSet;
+    Image ImgResp = null;
     try {
       conexion = admin.conectar();
       stm  = conexion.createStatement();
@@ -104,6 +110,7 @@ public class PeliculaDaoImp implements PeliculaDao {
         genero = peliculaSet.getString("genero");
         estreno = peliculaSet.getString("estreno");
         resumen = peliculaSet.getString("resumen");
+        imagen = peliculaSet.getBytes("imagen");
         peliculaHallada = new Pelicula(nom, director, duracion, idioma, estreno,genero, resumen);
         return peliculaHallada;
       }
@@ -119,14 +126,16 @@ public class PeliculaDaoImp implements PeliculaDao {
     int resultInsert = 0;
     String sql;
     PreparedStatement ps = null;
-        
+    File archivo = new File(pelicula.getImagen());
         
     if (conexionTransferida == false) { 
       conexion = admin.conectar();
     }
     try {
-      sql = "insert into peliculas (nombre,director,idioma,duracion,genero,estreno,resumen)"  
-             + "values(?, ?, ?, ?, ?, ?, ?)";
+    	
+    	FileInputStream convertirImag = new FileInputStream(archivo);
+      sql = "insert into peliculas (nombre,director,idioma,duracion,genero,estreno,resumen, imagen)"  
+             + "values(?, ?, ?, ?, ?, ?, ?, ?)";
                 
       ps = conexion.prepareStatement(sql);
       ps.setString(1, pelicula.getNombre());
@@ -136,6 +145,7 @@ public class PeliculaDaoImp implements PeliculaDao {
       ps.setString(5, pelicula.getGenero());
       ps.setString(6, pelicula.getFechaEstreno());
       ps.setString(7, pelicula.getResumen());
+      ps.setBlob(8, convertirImag,archivo.length());
       resultInsert = ps.executeUpdate();
       
       if (resultInsert != 0) {
@@ -151,7 +161,11 @@ public class PeliculaDaoImp implements PeliculaDao {
       JOptionPane.showMessageDialog(null, "Error no se inserto la pelicula:" + pelicula.getNombre() 
                                         + "\n" + e.getMessage());
       return false;   
-    }
+    } catch (FileNotFoundException e) {
+		
+		e.printStackTrace();
+		return false;
+	}
         
   }
 

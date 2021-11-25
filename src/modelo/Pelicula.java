@@ -1,6 +1,8 @@
 
 package modelo;
 
+import java.sql.Blob;
+
 /**.
  *
  * @author Andres Mendoza
@@ -15,6 +17,7 @@ public final class Pelicula {
   private String genero;
   private String fechaEstreno;
   private String resumen;
+  private String imagen;
   /**.
    * clase pelicula hace referencia a todos los datos referentes 
    * a un apelicula 
@@ -50,8 +53,29 @@ public final class Pelicula {
     this.fechaEstreno = estreno; 
     this.resumen = resumen;
   }
+  
+  
 
-  public String getNombre() {
+  public Pelicula(int ide, String nombre, String director, int duracion, String idioma, String genero,
+		String fechaEstreno, String resumen, String imagen) {
+	super();
+	this.ide = ide;
+	this.nombre = nombre;
+	this.director = director;
+	this.duracion = duracion;
+	this.idioma = idioma;
+	this.genero = genero;
+	this.fechaEstreno = fechaEstreno;
+	this.resumen = resumen;
+	this.imagen = imagen;
+}
+
+public Pelicula(String nom, String director2, int duracion2, String idioma2, String estreno, String genero2,
+		String resumen2, byte [] imagen2) {
+	// TODO Auto-generated constructor stub
+}
+
+public String getNombre() {
     return nombre;
   }
 
@@ -114,8 +138,16 @@ public final class Pelicula {
   public void setResumen(String resumen) {
     this.resumen = resumen;
   }
-   
-  public String ToString() {
+  
+  public String getImagen() {
+	return imagen;
+  }
+
+  public void setImagen(String imagen) {  
+    this.imagen = imagen;
+  }
+
+public String ToString() {
         
     String pelicula = null;
         

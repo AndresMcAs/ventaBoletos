@@ -31,7 +31,7 @@ import modelo.Pelicula;
  * 
  */
 
-public class Cartelera extends JFrame  {
+public class Horarios extends JFrame  {
     
   private static final long serialVersionUID = 1L;
   
@@ -50,8 +50,8 @@ public class Cartelera extends JFrame  {
  
 
   
-  public Cartelera() {
-    super("Cartelera");
+  public Horarios() {
+    super("Asignacion de Horarios");
     inicializa();
   }
   
@@ -111,6 +111,7 @@ public class Cartelera extends JFrame  {
          
           PeliculaDaoImp peliculaDao = new PeliculaDaoImp();
           peliculaHallada =  peliculaDao.buscarPelicula(pelicula.getNombre());
+          // falta completar el evento
         }
       });
       
@@ -137,7 +138,7 @@ public class Cartelera extends JFrame  {
    */
   public static void main(String []args) {
     SwingUtilities.invokeLater(() -> {
-      Cartelera thisClass = new Cartelera();
+      Horarios thisClass = new Horarios();
       thisClass.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       thisClass.setVisible(true);
     });
@@ -169,16 +170,7 @@ public class Cartelera extends JFrame  {
                                             + "Duracion: " + peli.getDuracion() + " min \n"
                                             + "Genero: " + peli.getGenero()  + "\n"
                                             + "Estreno: " + peli.getFechaEstreno());
-    /*
-    JPanel panelInfo = new JPanel();
-    Limpia lim = new Limpia();
-    lim.limpiarTexto(panelInfo);
-    panelInfo.setLayout(new GridLayout(1, 1));
-    panelInfo.add(new JLabel("Nombre: " + objPelicula.getNombre()));
-    panelInfo.add(new JLabel("Director: " + objPelicula.getDirector()));
-    panelInfo.add(new JLabel("Duracion: " + objPelicula.getDuracion()));
-   
-    cp.add(panelInfo, BorderLayout.SOUTH);*/
+  
     
   }
 }
