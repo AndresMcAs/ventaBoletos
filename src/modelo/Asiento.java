@@ -16,14 +16,14 @@ public class Asiento extends JLabel{
 
   private static final long serialVersionUID = 5L;
 	
-  private boolean reservado;
+  private boolean reservado = false;
   public final int VALOR;
   	
   public Asiento(String nombre, int valor) {
 	
     super(nombre);
     VALOR = valor;
-    reservado = false;
+    
     setHorizontalAlignment(SwingConstants.CENTER);
     setFont(new Font("Verdana", Font.BOLD, 20));
     setOpaque(true);
@@ -34,6 +34,7 @@ public class Asiento extends JLabel{
                    BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         
     setToolTipText("Disponible,fila: " + VALOR);
+    reservado = false;
   }
   
   /*
@@ -42,13 +43,14 @@ public class Asiento extends JLabel{
    */
   public void reservar() {
         
-    reservado = true;
+   
     setForeground(Color.RED);
     setToolTipText("Reservado");
     setBorder(null);
     setBorder(BorderFactory.createCompoundBorder(
                   BorderFactory.createMatteBorder(5, 5, 5, 5, Color.RED),
-                  BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+                  BorderFactory.createEmptyBorder(10, 10, 10, 10))); 
+    reservado = true;
   }
         
   public boolean estaReservado() {

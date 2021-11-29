@@ -35,6 +35,7 @@ public class PeliculaDaoImp implements PeliculaDao {
   private String resumen;
   private String estreno;
   private byte [] imagen;
+  private int id_pelicula;
     
   public PeliculaDaoImp() {
     admin = new AdminBd();
@@ -89,20 +90,21 @@ public class PeliculaDaoImp implements PeliculaDao {
   }
   
   @Override
-  public Pelicula buscarPelicula(String nombre) {
+  public Pelicula buscarPeliculaHorario(String nombre) {
 
     ResultSet peliculaSet;
     Image ImgResp = null;
     try {
       conexion = admin.conectar();
       stm  = conexion.createStatement();
-      peliculaSet = stm.executeQuery("select * from peliculas where nombre= '" + nombre.trim() + "'");
+      peliculaSet = stm.executeQuery("select * from peliculas where nombre= "
+                                      + "'" + nombre.trim() + "'");
       if (!peliculaSet.next()) {
         JOptionPane.showMessageDialog(null, "Pelicula no encontrada");
         conexion.close();
         return null;
       } else {
-
+        id_pelicula = peliculaSet.getInt("id_peli");
         nom = peliculaSet.getString("nombre");
         director = peliculaSet.getString("director");
         duracion = peliculaSet.getInt("duracion");
@@ -111,7 +113,41 @@ public class PeliculaDaoImp implements PeliculaDao {
         estreno = peliculaSet.getString("estreno");
         resumen = peliculaSet.getString("resumen");
         imagen = peliculaSet.getBytes("imagen");
-        peliculaHallada = new Pelicula(nom, director, duracion, idioma, estreno,genero, resumen);
+        peliculaHallada = new Pelicula(id_pelicula, nom, director, 
+        duracion, idioma, estreno, genero, resumen);
+        return peliculaHallada;
+      }
+    } catch (SQLException e) {
+      JOptionPane.showMessageDialog(null, "Error al consultar la BD" + "\n" + e.getMessage());
+      return null;
+    }
+  }
+  
+  @Override
+  public Pelicula buscarPelicula(String nombre) {
+
+    ResultSet peliculaSet;
+    Image ImgResp = null;
+    try {
+      conexion = admin.conectar();
+      stm  = conexion.createStatement();
+      peliculaSet = stm.executeQuery("select * from peliculas "
+                                    + "where nombre= '" + nombre.trim() + "'");
+      if (!peliculaSet.next()) {
+        JOptionPane.showMessageDialog(null, "Pelicula no encontrada");
+        conexion.close();
+        return null;
+      } else {
+        
+        nom = peliculaSet.getString("nombre");
+        director = peliculaSet.getString("director");
+        duracion = peliculaSet.getInt("duracion");
+        idioma = peliculaSet.getString("idioma");
+        genero = peliculaSet.getString("genero");
+        estreno = peliculaSet.getString("estreno");
+        resumen = peliculaSet.getString("resumen");
+        imagen = peliculaSet.getBytes("imagen");
+        peliculaHallada = new Pelicula(nom, director, duracion, idioma, estreno, genero, resumen);
         return peliculaHallada;
       }
     } catch (SQLException e) {
@@ -133,8 +169,9 @@ public class PeliculaDaoImp implements PeliculaDao {
     }
     try {
     	
-    	FileInputStream convertirImag = new FileInputStream(archivo);
-      sql = "insert into peliculas (nombre,director,idioma,duracion,genero,estreno,resumen, imagen)"  
+      FileInputStream convertirImag = new FileInputStream(archivo);
+      sql = "insert into peliculas (nombre, director, idioma, duracion,"
+             + "genero, estreno, resumen, imagen)"  
              + "values(?, ?, ?, ?, ?, ?, ?, ?)";
                 
       ps = conexion.prepareStatement(sql);
@@ -145,7 +182,7 @@ public class PeliculaDaoImp implements PeliculaDao {
       ps.setString(5, pelicula.getGenero());
       ps.setString(6, pelicula.getFechaEstreno());
       ps.setString(7, pelicula.getResumen());
-      ps.setBlob(8, convertirImag,archivo.length());
+      ps.setBlob(8, convertirImag, archivo.length());
       resultInsert = ps.executeUpdate();
       
       if (resultInsert != 0) {
@@ -162,10 +199,9 @@ public class PeliculaDaoImp implements PeliculaDao {
                                         + "\n" + e.getMessage());
       return false;   
     } catch (FileNotFoundException e) {
-		
-		e.printStackTrace();
-		return false;
-	}
+      e.printStackTrace();
+      return false;
+    }
         
   }
 

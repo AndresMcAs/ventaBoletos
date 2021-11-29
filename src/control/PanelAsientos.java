@@ -1,4 +1,4 @@
-package modelo;
+package control;
 
 import java.awt.GridLayout;
 import java.util.Random;
@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import basedatos.SalaDao;
+import modelo.Asiento;
+import modelo.Sala;
 
 
 public class PanelAsientos extends JPanel{
@@ -34,7 +36,7 @@ public class PanelAsientos extends JPanel{
             BorderFactory.createLoweredSoftBevelBorder()));
   }
 	
-  private void iniciarAsientos() {
+  public void iniciarAsientos() {
 	//filas - columnas 
     asientos = new Asiento[s.getFila()][s.getColumna()];
     int nAsiento = s.getFila();

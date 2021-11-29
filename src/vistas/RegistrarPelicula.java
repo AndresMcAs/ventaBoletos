@@ -1,8 +1,10 @@
 
-package control;
+package vistas;
 
 import com.toedter.calendar.JDateChooser;
 import basedatos.PeliculaDaoImp;
+import control.Limpia;
+import control.ValidarNumero;
 import imagenes.Fondo;
 
 import java.awt.BorderLayout;
@@ -30,7 +32,7 @@ import javax.swing.SwingUtilities;
 import java.awt.event.*;
 import java.awt.Image;
 import java.awt.Color;
-import modelo.Limpia;
+
 import modelo.Pelicula;
 
 /**
@@ -74,7 +76,7 @@ public class RegistrarPelicula extends JFrame implements ItemListener {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setSize(new Dimension(700, 700));        
     this.setLocationRelativeTo(null);
-    Color color=new Color(245, 222, 179);
+    Color color = new Color(255, 248, 231);
     this.getContentPane().setBackground(color);
     
     // panel de fecha 
@@ -169,12 +171,13 @@ public class RegistrarPelicula extends JFrame implements ItemListener {
     cp.add(panelBoton, BorderLayout.SOUTH);
     
    
-   
     selecion.addActionListener(new ActionListener() {
     	  @Override
           public void actionPerformed(ActionEvent e) {
-    		  
-    		  eventoSelecionar(e);
+    		  try {
+    
+    			  eventoSelecionar(e);
+    		  } catch (Exception ex ) {}
     }
     }); 
     
@@ -246,18 +249,10 @@ public class RegistrarPelicula extends JFrame implements ItemListener {
 	  }
   }
   
-  public boolean validar(String cadena) {
-		int m;
-		try {
-			m=Integer.parseInt(cadena);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-	}
+  ValidarNumero validar = new ValidarNumero();
   
   public void registrar() {
-	  boolean EsNumero = validar(duracion.getText());
+	  boolean EsNumero = validar.validar(duracion.getText());
 	  
       if ((nombre.getText().length() == 0 
     	  || duracion.getText().length() == 0	  
@@ -281,6 +276,7 @@ public class RegistrarPelicula extends JFrame implements ItemListener {
       dia = FechaEstreno.getCalendar().get(Calendar.DAY_OF_MONTH);
       mes = FechaEstreno.getCalendar().get(Calendar.MONTH) + 1;
       año = FechaEstreno.getCalendar().get(Calendar.YEAR);
+      
       fecha = dia  + "/" + mes + "/" + año ;
 
       pelicula.setFechaEstreno(fecha);

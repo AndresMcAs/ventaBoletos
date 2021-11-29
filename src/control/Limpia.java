@@ -1,4 +1,4 @@
-package modelo;
+package control;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -17,7 +17,7 @@ import com.toedter.calendar.JDateChooser;
 public class Limpia {
   
   /**.
-   * limpia el testo ingresado
+   * limpia el texto ingresado
    */
   public void limpiarTexto(JPanel panel) {
     for (int i = 0; panel.getComponents().length > i; i++) { 

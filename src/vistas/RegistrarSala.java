@@ -1,5 +1,5 @@
 
-package control;
+package vistas;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -14,8 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import basedatos.SalaDao;
+import control.Limpia;
+
 import javax.swing.SwingUtilities;
-import modelo.Limpia;
+
 import modelo.Sala;
 
 /**.

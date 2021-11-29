@@ -12,6 +12,7 @@ public interface PeliculaDao {
       
   public List<Pelicula> consultar();
   
+  public Pelicula buscarPeliculaHorario(String nombre);
   public Pelicula buscarPelicula(String nombre);
   
   public boolean insertar(Pelicula pelicula);

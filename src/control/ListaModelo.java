@@ -1,8 +1,10 @@
-package modelo;
+package control;
 
 import java.util.ArrayList;
 
 import javax.swing.AbstractListModel;
+
+import modelo.Pelicula;
 
 public class ListaModelo  extends AbstractListModel<Object>{
 

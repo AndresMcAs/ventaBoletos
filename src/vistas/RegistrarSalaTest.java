@@ -1,4 +1,4 @@
-package control;
+package vistas;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

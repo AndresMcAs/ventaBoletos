@@ -1,7 +1,6 @@
 
 package modelo;
 
-import java.sql.Blob;
 
 /**.
  *
@@ -20,7 +19,7 @@ public final class Pelicula {
   private String imagen;
   /**.
    * clase pelicula hace referencia a todos los datos referentes 
-   * a un apelicula 
+   * a una pelicula 
    * @param nombre de la pelicula
    * @param dire   nombre del director
    * @param idioma idioma de la pelicula
@@ -55,27 +54,60 @@ public final class Pelicula {
   }
   
   
+  /**.
+   * principalmente para la caratelara 
+   * @param ide identica a la pelicula 
+   * @param nombre de la pelicula 
+  * @param director  de la pelicula 
+   * @param duracion  que tarda la pelicula
+   * @param idioma  en qle que se encuentra la peliculas 
+   * @param genero al que pertence 
+   * @param fechaEstreno en la que se estreno
+   * @param resumen de que trata la peliculas 
+   * @param imagen relacionada con la pelicula 
+   */
+  public Pelicula(int ide, String nombre, String director, int duracion,
+      String idioma, String genero,
+      String fechaEstreno, String resumen, String imagen) {
+    super();
+    this.ide = ide;
+    this.nombre = nombre;
+    this.director = director;
+    this.duracion = duracion;
+    this.idioma = idioma;
+    this.genero = genero;
+    this.fechaEstreno = fechaEstreno;
+    this.resumen = resumen;
+    this.imagen = imagen;
+  }
+  
+  /**.
+   * 
+   * @param ide identificador de la peliculas 
+   * @param nombre  de la pelicula
+   * @param director  de la pelicula 
+   * @param duracion  que tarda la pelicula
+   * @param idioma  en qle que se encuentra la peliculas 
+   * @param genero al que pertence 
+   * @param fechaEstreno en la que se estreno
+   * @param resumen de que trata la peliculas 
+   */
+  public Pelicula(int ide, String nombre, String director, int duracion, 
+       String idioma, String genero,
+       String fechaEstreno, String resumen) {
+    super();
+    this.ide = ide;
+    this.nombre = nombre;
+    this.director = director;
+    this.duracion = duracion;
+    this.idioma = idioma;
+    this.genero = genero;
+    this.fechaEstreno = fechaEstreno;
+    this.resumen = resumen;
+  }
 
-  public Pelicula(int ide, String nombre, String director, int duracion, String idioma, String genero,
-		String fechaEstreno, String resumen, String imagen) {
-	super();
-	this.ide = ide;
-	this.nombre = nombre;
-	this.director = director;
-	this.duracion = duracion;
-	this.idioma = idioma;
-	this.genero = genero;
-	this.fechaEstreno = fechaEstreno;
-	this.resumen = resumen;
-	this.imagen = imagen;
-}
 
-public Pelicula(String nom, String director2, int duracion2, String idioma2, String estreno, String genero2,
-		String resumen2, byte [] imagen2) {
-	// TODO Auto-generated constructor stub
-}
-
-public String getNombre() {
+  public String getNombre() {
     return nombre;
   }
 
