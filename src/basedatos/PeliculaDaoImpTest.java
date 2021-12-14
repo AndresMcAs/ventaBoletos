@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author HP
  */
 public class PeliculaDaoImpTest {
-  /*@Test
+  @Test
   public void debeInsertar() {
     Pelicula pel = new Pelicula();
     pel.setNombre("No Respires 2");
@@ -29,19 +29,19 @@ public class PeliculaDaoImpTest {
     registro = dao.insertar(pel);
     assertTrue(registro);
   }
-  */
+  
   @Test 
   public void debeBuscar() {
     PeliculaDaoImp da = new PeliculaDaoImp();
     Pelicula peliculaHallada = da.buscarPelicula("No Respires");
     assertNotNull(peliculaHallada);
   }
-  /*
+  
   @Test
   public void debeBorrar() {
 	PeliculaDaoImp da = new PeliculaDaoImp();
 	int peliculaBorrar = da.borrarPorNombre(46,"No Respires");
     assertEquals(peliculaBorrar,1);
-  }*/
+  }
  
 }

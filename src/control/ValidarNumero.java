@@ -1,16 +1,16 @@
 package control;
 
-/**.
+/**
  * Valida si es un numero o no 
- * @author HP
+ * @author Andres Mendoza
  *
  */
 public class ValidarNumero {
 	
-  /**.
-   *  
-   * @param cadena validar si se trata de un numero o no
-   * @return
+  /** 
+   * valida un numero
+   * @param cadena valida si se trata de un numero o no
+   * @return boolean
    */
   public boolean validar(String cadena) {
     int m;

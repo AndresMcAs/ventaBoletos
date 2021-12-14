@@ -3,7 +3,7 @@ package modelo;
 
 
 /**
- *
+ * Class sala 
  * @author andres Mendoza
  * clase para las salas disponibles en el cine 
  */
@@ -13,6 +13,12 @@ public class Sala {
   private int fila;
   private int columna;
     
+  /**
+   * contructor de la sala 
+   * @param nombre
+   * @param fila
+   * @param columna
+   */
   public Sala(String nombre, int fila, int columna) {
     
     this.nombre = nombre;
@@ -51,15 +57,6 @@ public class Sala {
 
   public void setColumna(int columna) {
     this.columna = columna;
-  }
-  
-  public String ToString() {
-      
-    String sala = "Nombre: " +  getNombre() 
-                    + "\nFilas: " + getFila() 
-                    + "\nColumnas: " + getColumna();
-    return sala;
-    
   }
     
 }

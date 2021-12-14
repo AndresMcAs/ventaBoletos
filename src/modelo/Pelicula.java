@@ -2,8 +2,8 @@
 package modelo;
 
 
-/**.
- *
+/**
+ * Class pelicula
  * @author Andres Mendoza
  */
 public final class Pelicula {
@@ -17,7 +17,8 @@ public final class Pelicula {
   private String fechaEstreno;
   private String resumen;
   private String imagen;
-  /**.
+  
+  /**
    * clase pelicula hace referencia a todos los datos referentes 
    * a una pelicula 
    * @param nombre de la pelicula
@@ -42,6 +43,16 @@ public final class Pelicula {
   public Pelicula() {
   }
   
+  /**
+   * constructor de la clase pelicula
+   * @param nombre
+   * @param director
+   * @param duracion
+   * @param idioma
+   * @param estreno
+   * @param genero
+   * @param resumen
+   */
   public Pelicula(String nombre, String director, int duracion, String idioma, 
                   String estreno, String genero, String resumen) {
     this.nombre = nombre;
@@ -54,8 +65,8 @@ public final class Pelicula {
   }
   
   
-  /**.
-   * principalmente para la caratelara 
+  /**
+   * constructor principalmente para la caratelara 
    * @param ide identica a la pelicula 
    * @param nombre de la pelicula 
   * @param director  de la pelicula 

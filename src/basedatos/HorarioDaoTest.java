@@ -5,11 +5,9 @@ import modelo.Horario;
 import modelo.Pelicula;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**.
+/**
  * 
  * @author HP
  *
@@ -18,7 +16,8 @@ public class HorarioDaoTest {
   
  @Test
   public void debeInsertar() {
-    System.out.println("pureba de objeto peliculaDao");
+	 
+    System.out.println(">Entrando a prueba debeInsertar");
     PeliculaDaoImp da = new PeliculaDaoImp();
     Pelicula peliculaHallada = da.buscarPeliculaHorario("prueba");
     Horario hor = new Horario();
@@ -39,10 +38,9 @@ public class HorarioDaoTest {
   @Test
   public void debeBuscar() {
 
-    PeliculaDaoImp dao2 =  new PeliculaDaoImp();
-    Pelicula horarior = new Pelicula(); 
+	  System.out.println(">Entrando a prueba debeBucar");
     HorarioDao horarioDao = new HorarioDao();
-    horarior = horarioDao.buscarHorarioPelicula("prueba");
+    horarioDao.buscarHorarioPelicula("prueba");
   }
 
 }

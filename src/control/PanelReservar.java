@@ -9,9 +9,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-/**.
- *      class panel para poder reservar un asiento en la sala 
- *
+/**
+ * class panel para poder reservar un asiento en la sala 
+ * @author Andres Mendoza
  */
 public class PanelReservar extends JPanel {
 
@@ -21,8 +21,8 @@ public class PanelReservar extends JPanel {
   public JButton btReservar;
   public JButton btCancelar;
   
-  /**.  
-   * Constructor del panel
+  /**  
+   * Constructor del panel de reservacion
    */
   public PanelReservar() {
 

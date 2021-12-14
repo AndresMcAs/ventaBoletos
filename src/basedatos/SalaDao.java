@@ -8,7 +8,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import modelo.Sala;
 
-/**.
+/**
  * SalaDao  class que sirve para la gestion de las salas
  *
  */
@@ -30,7 +30,7 @@ public class SalaDao {
   }
   
   /**.
-   * method que inserta un registro en BD
+   * method que inserta una sala en BD
    * @param sala
    * @return
    */
@@ -65,8 +65,8 @@ public class SalaDao {
     }
   }
   
-  /**.
-   * 
+  /**
+   * Busca una sala registrada 
    * @param nombre de la sala a buscar
    * @return regresa la sala buscada
    */

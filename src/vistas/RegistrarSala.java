@@ -1,6 +1,9 @@
 
 package vistas;
 
+import basedatos.SalaDao;
+import control.Limpia;
+import control.ValidarNumero;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -13,12 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import basedatos.SalaDao;
-import control.Limpia;
-
 import javax.swing.SwingUtilities;
-
 import modelo.Sala;
+
 
 /**.
  *
@@ -34,6 +34,7 @@ public class RegistrarSala extends JFrame {
   JButton cancelar;
   JButton salir;
   JPanel panelDatos = new JPanel();
+  JPanel panelBoton = new JPanel();
   
   /**. 
    * method Para que se muestre la ventana RegistrarSala
@@ -70,8 +71,7 @@ public class RegistrarSala extends JFrame {
     panelDatos.add(fila = new JTextField(2));
     panelDatos.add(new JLabel("Columnas: *"));
     panelDatos.add(columna = new JTextField(2));
-    
-    JPanel panelBoton = new JPanel();
+
     registrar = new JButton("Registrar");
     cancelar = new JButton("Cancelar");
     salir = new JButton("Salir");
@@ -121,14 +121,15 @@ public class RegistrarSala extends JFrame {
       
     boolean esNumero;
     boolean esNumero2;
-    esNumero = validar(fila.getText());
-    esNumero2 = validar(columna.getText()); 
+    ValidarNumero valida = new ValidarNumero();
+    esNumero = valida.validar(fila.getText());
+    esNumero2 = valida.validar(columna.getText()); 
     sala = new Sala();
     System.out.println("nomre" + nombre.getText());
     
     if (nombre.getText().length() == 0
-    	|| fila.getText().length() == 0
-    	|| columna.getText().length() == 0) {
+        || fila.getText().length() == 0
+        || columna.getText().length() == 0) {
       JOptionPane.showMessageDialog(null, "Ingresa los campos obligatorios");
     }
     if (esNumero == false || esNumero2 == false) {
@@ -155,19 +156,6 @@ public class RegistrarSala extends JFrame {
       
   }
    
-  /**.
-   * metodo que valida si se trata de un numero o no
-   * 
-   */
-  public boolean validar(String cadena) {
-    int m;
-    try {
-      m = Integer.parseInt(cadena);
-      return true;
-    } catch (Exception e) {
-      return false;
-    }
-  }
-
+  
     
 }

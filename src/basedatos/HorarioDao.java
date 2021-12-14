@@ -13,9 +13,9 @@ import modelo.Horario;
 import modelo.Pelicula;
 
 
-/**.
+/**
  * Class para el almacenamiento de los horarios en la BD
- * @author andres
+ * @author Andres Mendoza 
  *
  */
 public class HorarioDao {
@@ -46,8 +46,9 @@ public class HorarioDao {
 	  }
 	  
 	  /**.
-	   * method que inserta un registro en BD
+	   * method Inserta el horario de alguna pelicula que se desea ver en el cine 
 	   * @param sala
+	   * @parma id_pelicula verifica que exista la pelicula 
 	   * @return
 	   */
 	  public boolean insertarHorario(Horario horario, Pelicula pelicula) {

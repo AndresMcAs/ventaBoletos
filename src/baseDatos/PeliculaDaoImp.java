@@ -4,7 +4,6 @@ package basedatos;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,9 +15,9 @@ import javax.swing.JOptionPane;
 import modelo.Pelicula;
 import java.awt.Image;
 
-/**.
- *
- * @author HP
+/**
+ * Clase encargada de gestionar los datos de las peliculas
+ * @author Andres Mendoza
  */
 public class PeliculaDaoImp implements PeliculaDao {
     
@@ -35,7 +34,7 @@ public class PeliculaDaoImp implements PeliculaDao {
   private String resumen;
   private String estreno;
   private byte [] imagen;
-  private int id_pelicula;
+  private int identificadorpelicula;
     
   public PeliculaDaoImp() {
     admin = new AdminBd();
@@ -48,8 +47,8 @@ public class PeliculaDaoImp implements PeliculaDao {
   }
   
   /**.
-     * metodo para visualizar la cartelera del cine  
-     * en el cual se mostarran todas las peliculas disponibles 
+     * metodo para visualizar la lista de las peliculas registradas
+     *  
      */
   
   @Override
@@ -89,6 +88,9 @@ public class PeliculaDaoImp implements PeliculaDao {
     return lista;
   }
   
+  /**
+   * Busca una pelicula para asignarle un horario  
+   */
   @Override
   public Pelicula buscarPeliculaHorario(String nombre) {
 
@@ -104,7 +106,7 @@ public class PeliculaDaoImp implements PeliculaDao {
         conexion.close();
         return null;
       } else {
-        id_pelicula = peliculaSet.getInt("id_peli");
+        identificadorpelicula = peliculaSet.getInt("id_peli");
         nom = peliculaSet.getString("nombre");
         director = peliculaSet.getString("director");
         duracion = peliculaSet.getInt("duracion");
@@ -113,7 +115,7 @@ public class PeliculaDaoImp implements PeliculaDao {
         estreno = peliculaSet.getString("estreno");
         resumen = peliculaSet.getString("resumen");
         imagen = peliculaSet.getBytes("imagen");
-        peliculaHallada = new Pelicula(id_pelicula, nom, director, 
+        peliculaHallada = new Pelicula(identificadorpelicula, nom, director, 
         duracion, idioma, estreno, genero, resumen);
         return peliculaHallada;
       }
@@ -123,6 +125,9 @@ public class PeliculaDaoImp implements PeliculaDao {
     }
   }
   
+  /**
+   * Busca una pelicula en la base de datos 
+   */
   @Override
   public Pelicula buscarPelicula(String nombre) {
 
@@ -156,6 +161,9 @@ public class PeliculaDaoImp implements PeliculaDao {
     }
   }
   
+  /**
+   * inserta una pelicula en la base de datos
+   */
   @Override
   public boolean insertar(Pelicula pelicula) {
 

@@ -36,7 +36,7 @@ import java.awt.Color;
 import modelo.Pelicula;
 
 /**
- *
+ * 
  * @author  andres mendoza 
  */
 public class RegistrarPelicula extends JFrame implements ItemListener {

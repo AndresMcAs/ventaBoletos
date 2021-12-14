@@ -38,7 +38,7 @@ public class ReservaAsiento extends JFrame {
   }
   
   /**.
-   * reserva alún asiento dipsonible
+   * reserva algún asiento diponible
    */
   public ReservaAsiento() {
     
@@ -46,12 +46,10 @@ public class ReservaAsiento extends JFrame {
     setSize(650, 1000);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     GridLayout gl = new GridLayout(8, 6, 2, 2); 
-      
-       
-    PanelAsientos panelAsiento = new PanelAsientos(); //se muestran los asientos de la sala
+    //se muestran los asientos de la sala 
+    PanelAsientos panelAsiento = new PanelAsientos(); 
     panelAsiento.setLayout(gl);
      
-      
     PanelReservar panelReserva = new PanelReservar();
     GridLayout glr = new GridLayout(3, 3, 2, 2);
     glr.setRows(3);
@@ -96,10 +94,10 @@ public class ReservaAsiento extends JFrame {
           StringBuilder reservados = new StringBuilder();
           int importe = 0;
           for (Asiento asi : reservasValidas) {
-            if (asiento.estaReservado()) 
+            if (asiento.estaReservado()) {
                   reservados.append("[" + asi.getText() + "] ");
                   importe += 50; // cambiar por el precio de los boletos 
-            
+            }
           }
           confirmacion = String.format("Asientos a reservar: %s\nImporte total: %d\n"
                                           + "¿Confirmar reserva?", reservados.toString(), importe);
@@ -108,10 +106,10 @@ public class ReservaAsiento extends JFrame {
           if (respuesta == JOptionPane.YES_OPTION) {
             //Reservamos asientos
             for (Asiento asi : reservasValidas) {
-              if (asi.estaReservado()) 
+              if (asi.estaReservado()) {
                 asi.reservar();
-                panelReserva.reset();
               
+              }
             }
           }
           }

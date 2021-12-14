@@ -7,9 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**.
- *
- * @author andres mendoza
+/**
+ * clase que se conecta a la base de datos
+ * @author Andres mendoza
  */
 
 public class AdminBd {
@@ -21,8 +21,9 @@ public class AdminBd {
   private String host;
   private String puerto;
   private String baseDatos;
-  /**.
-   *  class para la conexion a la base da datos 
+  
+  /**
+   *  constructor para la conexion a la base de datos 
    */
   
   public AdminBd() {
@@ -35,8 +36,8 @@ public class AdminBd {
     contra = "cine";
   }
   /**.
-   * se encarga de ralizar la conexion a la base de datos
-   * @return  regresa la conexion
+   * Funncion que se encarga de ralizar la conexion a la base de datos
+   *
    */
   
   public Connection conectar() {
